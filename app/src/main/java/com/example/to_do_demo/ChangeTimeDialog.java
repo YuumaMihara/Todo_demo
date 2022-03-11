@@ -2,8 +2,11 @@ package com.example.to_do_demo;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -11,12 +14,24 @@ import android.widget.NumberPicker;
 
 import androidx.fragment.app.DialogFragment;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 public class ChangeTimeDialog extends DialogFragment {
 
     private static int id;
+    private static Context context;
+    private static String dateTxt;
+    Callback mCall;
 
-    ChangeTimeDialog(int id){
+
+    ChangeTimeDialog(int id, Context context, String dateTxt){
         this.id = id;
+        this.context = context;
+        this.dateTxt = dateTxt;
+    }
+
+    public interface Callback{
+        public void OnResultOk();
     }
 
     @Override
@@ -34,6 +49,7 @@ public class ChangeTimeDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("予定時刻を変更");
+
         builder.setPositiveButton("予定時刻を変更", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -43,12 +59,16 @@ public class ChangeTimeDialog extends DialogFragment {
                 String timeOfDayInt = String.format("%02d", numberPickerHours.getValue())
                         + String.format("%02d", numberPickerMinutes.getValue());
 
-                list_display list_display = (list_display) getActivity();
-                list_display.updateDataTime(id, timeOfDay, timeOfDayInt);
-                list_display.readData();
+                dbManager db = new dbManager(context,dateTxt);
+                db.updateDataTime(id, timeOfDay, timeOfDayInt);
+                mCall.OnResultOk();
             }
         }).setView(view);
         return builder.create();
+    }
+
+    void setCallback(Callback call){
+        this.mCall = call;
     }
 }
 

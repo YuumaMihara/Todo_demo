@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".AllList_display"
+            android:exported="false" />
+        <activity
             android:name=".list_display"
             android:exported="false" />
         <activity

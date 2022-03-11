@@ -2,6 +2,7 @@ package com.example.to_do_demo;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,9 +14,18 @@ import androidx.fragment.app.DialogFragment;
 
 public class ChangeNameDialog extends DialogFragment {
     private static int id;
+    private static Context context;
+    private static String dateTxt;
+    Callback mCall;
 
-    ChangeNameDialog(int id){
+    ChangeNameDialog(int id, Context context, String dateTxt){
         this.id = id;
+        this.context = context;
+        this.dateTxt = dateTxt;
+    }
+
+    public interface Callback{
+        public void OnResultOk();
     }
 
     @Override
@@ -30,12 +40,16 @@ public class ChangeNameDialog extends DialogFragment {
         builder.setPositiveButton("予定名を変更", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                list_display list_display = (list_display) getActivity();
-                list_display.updateDataName(id, todoName.getText().toString());
-                list_display.readData();
+                dbManager db = new dbManager(context, dateTxt);
+                db.updateDataName(id, todoName.getText().toString());
+                mCall.OnResultOk();
             }
         });
         builder.setView(view);
         return builder.create();
+    }
+
+    void setCallback(Callback call){
+        this.mCall = call;
     }
 }

@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/Todo_demo/app/src/main/res/layout/activity_all_list_display.xml" value="0.2513586956521739" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Todo_demo/app/src/main/res/layout/activity_get_period.xml" value="0.23052536231884058" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Todo_demo/app/src/main/res/layout/activity_list_display.xml" value="0.14" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/Todo_demo/app/src/main/res/layout/activity_main.xml" value="0.34103260869565216" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Todo_demo/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/Todo_demo/app/src/main/res/layout/activity_search_string.xml" value="0.23052536231884058" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Todo_demo/app/src/main/res/layout/change_name_picker.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Todo_demo/app/src/main/res/layout/change_number_picker.xml" value="0.21" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Todo_demo/app/src/main/res/layout/number_picker.xml" value="0.25" />
